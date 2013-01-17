@@ -43,10 +43,10 @@ on Mac - you can use tool brew from homebrew project. You have additionally inst
 ## Mac only
 glibtoolize: 
 because the Xcode 4.5.2 fails to supply glibtoolize,
-but freetype2 depends it,just copy your 'libtoolize' to 'glibtoolize',
-such as:
+but freetype2 depends on it, just copy your 'libtoolize' to 'glibtoolize',
+Such as:
 
-	 sudo cp /usr/local/bin/libtoolize /usr/local/bin/libtoolize
+	 sudo cp /usr/local/bin/libtoolize /usr/local/bin/glibtoolize
 
 ## Installation
 
