@@ -35,15 +35,16 @@ you have to install:
 - autoconf
 - autoconf-archive
 - automake
-- glibtoolize: Mac system only, because the Xcode 4.5.2 fails to supply glibtoolize,
--              but freetype2 depends it,just copy your 'libtoolize' to 'glibtoolize',
--              such as:
--                   sudo cp /usr/local/bin/libtoolize /usr/local/bin/libtoolize
 
 on Debian/Ubuntu - you can use apt-get
 
 on Mac - you can use tool brew from homebrew project. You have additionally install xcode. 
 
+## Mac only
+glibtoolize: because the Xcode 4.5.2 fails to supply glibtoolize,
+             but freetype2 depends it,just copy your 'libtoolize' to 'glibtoolize',
+             such as:
+                  sudo cp /usr/local/bin/libtoolize /usr/local/bin/libtoolize
 
 ## Installation
 
