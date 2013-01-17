@@ -1,5 +1,9 @@
 #!/bin/sh
 
+export GIT_SSL_NO_VERIFY=true
+
+set -e #bail on error
+
 git submodule init
 git submodule sync
 git submodule update
