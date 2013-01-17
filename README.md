@@ -65,7 +65,7 @@ downloading source code
 	cd FFmpegLibrary
 	cd jni
 
-setup freetype22 environemtn
+setup freetype2 environemtn
 
 	cd freetype2
 	./autogen.sh
