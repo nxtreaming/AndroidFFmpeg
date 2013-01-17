@@ -24,7 +24,7 @@ fi
 OS=`uname -s | tr '[A-Z]' '[a-z]'`
 function build_x264
 {
-	PLATFORM=$NDK/platforms/$PLATFORM_VERSION/arch-$ARCH/
+	PLATFORM=$NDK/platforms/$PLATFORM_VERSION/arch-$ARCH
 	export PATH=${PATH}:$PREBUILT/bin/
 	CROSS_COMPILE=$PREBUILT/bin/$EABIARCH-
 	CFLAGS=$OPTIMIZE_CFLAGS
@@ -51,7 +51,7 @@ function build_x264
 
 function build_amr
 {
-	PLATFORM=$NDK/platforms/$PLATFORM_VERSION/arch-$ARCH/
+	PLATFORM=$NDK/platforms/$PLATFORM_VERSION/arch-$ARCH
 	export PATH=${PATH}:$PREBUILT/bin/
 	CROSS_COMPILE=$PREBUILT/bin/$EABIARCH-
 	CFLAGS=$OPTIMIZE_CFLAGS
@@ -85,7 +85,7 @@ function build_amr
 
 function build_aac
 {
-	PLATFORM=$NDK/platforms/$PLATFORM_VERSION/arch-$ARCH/
+	PLATFORM=$NDK/platforms/$PLATFORM_VERSION/arch-$ARCH
 	export PATH=${PATH}:$PREBUILT/bin/
 	CROSS_COMPILE=$PREBUILT/bin/$EABIARCH-
 	CFLAGS=$OPTIMIZE_CFLAGS
@@ -120,7 +120,7 @@ function build_aac
 }
 function build_freetype2
 {
-	PLATFORM=$NDK/platforms/$PLATFORM_VERSION/arch-$ARCH/
+	PLATFORM=$NDK/platforms/$PLATFORM_VERSION/arch-$ARCH
 	export PATH=${PATH}:$PREBUILT/bin/
 	CROSS_COMPILE=$PREBUILT/bin/$EABIARCH-
 	CFLAGS=$OPTIMIZE_CFLAGS
@@ -155,7 +155,7 @@ function build_freetype2
 }
 function build_ass
 {
-	PLATFORM=$NDK/platforms/$PLATFORM_VERSION/arch-$ARCH/
+	PLATFORM=$NDK/platforms/$PLATFORM_VERSION/arch-$ARCH
 	export PATH=${PATH}:$PREBUILT/bin/
 	CROSS_COMPILE=$PREBUILT/bin/$EABIARCH-
 	CFLAGS="$OPTIMIZE_CFLAGS"
@@ -191,7 +191,7 @@ function build_ass
 }
 function build_fribidi
 {
-	PLATFORM=$NDK/platforms/$PLATFORM_VERSION/arch-$ARCH/
+	PLATFORM=$NDK/platforms/$PLATFORM_VERSION/arch-$ARCH
 	export PATH=${PATH}:$PREBUILT/bin/
 	CROSS_COMPILE=$PREBUILT/bin/$EABIARCH-
 	CFLAGS="$OPTIMIZE_CFLAGS -std=gnu99"
@@ -225,7 +225,7 @@ function build_fribidi
 }
 function build_ffmpeg
 {
-	PLATFORM=$NDK/platforms/$PLATFORM_VERSION/arch-$ARCH/
+	PLATFORM=$NDK/platforms/$PLATFORM_VERSION/arch-$ARCH
 	CC=$PREBUILT/bin/$EABIARCH-gcc
 	CROSS_PREFIX=$PREBUILT/bin/$EABIARCH-
 	PKG_CONFIG=${CROSS_PREFIX}pkg-config
@@ -341,7 +341,7 @@ EOF
 
 function build_one {
 	cd ffmpeg
-	PLATFORM=$NDK/platforms/$PLATFORM_VERSION/arch-$ARCH/
+	PLATFORM=$NDK/platforms/$PLATFORM_VERSION/arch-$ARCH
 	$PREBUILT/bin/$EABIARCH-ld -rpath-link=$PLATFORM/usr/lib -L$PLATFORM/usr/lib -L$PREFIX/lib  -soname $SONAME -shared -nostdlib  -z,noexecstack -Bsymbolic --whole-archive --no-undefined -o $OUT_LIBRARY -lavcodec -lavformat -lavresample -lavutil -lswresample -lass -lfreetype -lfribidi -lswscale -lvo-aacenc -lvo-amrwbenc -lc -lm -lz -ldl -llog  --warn-once  --dynamic-linker=/system/bin/linker -zmuldefs $PREBUILT/lib/gcc/$EABIARCH/4.4.3/libgcc.a || exit 1
 	cd ..
 }
