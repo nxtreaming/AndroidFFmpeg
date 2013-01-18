@@ -16,12 +16,12 @@
  *
  */
 
-#include "queue.h"
-
 #include <stdlib.h>
 #include <stdio.h>
 #include <assert.h>
 #include <pthread.h>
+
+#include "queue.h"
 
 #define FALSE 0
 #define TRUE (!(FALSE))
