@@ -103,6 +103,7 @@ static JavaMethod audio_track_get_channel_count = {"getChannelCount", "()I"};
 static JavaMethod audio_track_get_sample_rate = {"getSampleRate", "()I"};
 
 // Player
+jboolean jni_player_is_neon(JNIEnv *env, jobject thiz);
 int jni_player_init(JNIEnv *env, jobject thiz);
 void jni_player_dealloc(JNIEnv *env, jobject thiz);
 void jni_player_seek(JNIEnv *env, jobject thiz, jint position);
@@ -119,6 +120,7 @@ void jni_player_release_frame (JNIEnv *env, jobject thiz);
 int jni_player_get_video_duration(JNIEnv *env, jobject thiz);
 
 static JNINativeMethod player_methods[] = {
+	{"isNeon", "()Z", (void*) jni_player_is_neon},
 	{"initNative", "()I", (void*) jni_player_init},
 	{"deallocNative", "()V", (void*) jni_player_dealloc},
 	{"seekNative", "(I)V", (void*) jni_player_seek},

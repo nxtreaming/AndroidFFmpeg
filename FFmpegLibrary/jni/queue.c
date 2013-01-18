@@ -292,4 +292,3 @@ void queue_wait_for(Queue *queue, int size, pthread_mutex_t * mutex,
 	}
 	pthread_mutex_unlock(mutex);
 }
-

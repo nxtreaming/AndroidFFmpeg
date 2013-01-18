@@ -32,5 +32,4 @@ typedef struct {
 jfieldID java_get_field(JNIEnv *env, char * class_name, JavaField field);
 jmethodID java_get_method(JNIEnv *env, jclass class, JavaMethod method);
 
-
 #endif /* HELPERS_H_ */

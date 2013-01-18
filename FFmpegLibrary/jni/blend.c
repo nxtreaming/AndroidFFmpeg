@@ -141,4 +141,3 @@ void blend_subrect_rgb(AVPicture *dest, const AVSubtitleRect *rect, int imgw,
 		src += rect->pict.linesize[0];
 	}
 }
-

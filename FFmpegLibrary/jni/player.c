@@ -35,6 +35,7 @@
 
 #include <android/bitmap.h>
 #include <android/log.h>
+#include <machine/cpu-features.h>
 
 #include <jni.h>
 #include <pthread.h>
@@ -2575,6 +2576,32 @@ void jni_player_dealloc(JNIEnv *env, jobject thiz) {
 	free(player);
 }
 
+jboolean jni_player_is_neon(JNIEnv *env, jobject thiz) {
+#ifdef FEATURE_NEON
+	uint64_t features;
+	if (android_getCpuFamily() != ANDROID_CPU_FAMILY_ARM) {
+		LOGI(5, "Not an ARM CPU\n");
+		return JNI_FALSE;
+	}
+
+	features = android_getCpuFeatures();
+
+	if ((features & ANDROID_CPU_ARM_FEATURE_ARMv7) == 0) {
+		LOGI(5, "Not an ARMv7 CPU\n");
+		return JNI_FALSE;
+	}
+
+	if ((features & ANDROID_CPU_ARM_FEATURE_NEON) == 0) {
+		LOGI(5, "CPU doesn't support NEON\n");
+		return JNI_FALSE;
+	}
+
+	return JNI_TRUE;
+#else
+	return JNI_FALSE;
+#endif
+}
+
 int jni_player_init(JNIEnv *env, jobject thiz) {
 
 #ifdef PROFILER
@@ -2972,4 +2999,3 @@ int jni_player_get_video_duration(JNIEnv *env, jobject thiz) {
 	struct Player * player = player_get_player_field(env, thiz);
 	return player->video_duration;
 }
-
