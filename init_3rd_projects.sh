@@ -36,8 +36,5 @@ cd vo-amrwbenc
 autoreconf
 cd ..
 
-echo "try to build the jni shared library"
-$NDK/ndk-build
-
-echo "Fininshed compiling"
+echo "Fininshed configure 3rd projects"
 
