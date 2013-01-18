@@ -16,7 +16,6 @@
  *
  */
 
-/*android specific headers*/
 #include <jni.h>
 #include <android/log.h>
 
@@ -28,7 +27,6 @@
 #ifndef NELEM
 #define NELEM(x) ((int)(sizeof(x) / sizeof((x)[0])))
 #endif
-
 
 #define LOG_TAG "NativeTester-jni"
 #define LOG_LEVEL 10

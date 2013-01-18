@@ -23,7 +23,6 @@ LIBRARY_PROFILER:=
 LIBRARY_YUV2RGB:=
 MODULE_ENCRYPT:=
 
-
 #settings
 
 # add support for encryption
@@ -45,9 +44,6 @@ ifeq ($(TARGET_ARCH_ABI),$(filter $(TARGET_ARCH_ABI),armeabi armeabi-v7a))
 	# add yuv2rgb (only arm)
 	LIBRARY_YUV2RGB:=yes
 endif
-
-
-
 
 #includes
 ifdef MODULE_ENCRYPT
@@ -79,7 +75,6 @@ ifdef FEATURE_NEON
 	LOCAL_PRELINK_MODULE := true
 	include $(PREBUILT_SHARED_LIBRARY)
 endif
-
 
 #ffmpeg-jni library
 include $(CLEAR_VARS)
@@ -114,7 +109,6 @@ endif
 LOCAL_LDLIBS := -llog -ljnigraphics -lz -lm -g $(LOCAL_PATH)/ffmpeg-build/$(TARGET_ARCH_ABI)/libffmpeg.so
 include $(BUILD_SHARED_LIBRARY)
 
-
 ifdef FEATURE_NEON
 include $(CLEAR_VARS)
 LOCAL_ALLOW_UNDEFINED_SYMBOLS=false
@@ -144,7 +138,6 @@ LOCAL_LDLIBS := -llog -ljnigraphics -lz -lm -g $(LOCAL_PATH)/ffmpeg-build/$(TARG
 include $(BUILD_SHARED_LIBRARY)
 endif
 
-
 #nativetester-jni library
 include $(CLEAR_VARS)
 
@@ -163,8 +156,4 @@ LOCAL_STATIC_LIBRARIES += cpufeatures
 LOCAL_LDLIBS  := -llog
 include $(BUILD_SHARED_LIBRARY)
 
-
-
-
 $(call import-module,cpufeatures)
-

@@ -16,7 +16,6 @@
  *
  */
 
-/*android specific headers*/
 #include <jni.h>
 #include <android/log.h>
 /*standard library*/
@@ -28,7 +27,6 @@
 #include <inttypes.h>
 #include <unistd.h>
 #include <assert.h>
-
 
 #include "helpers.h"
 #include "player.h"
@@ -93,5 +91,3 @@ bail:
 void JNI_OnUnload(JavaVM *vm, void *reserved)
 {
 }
-
-

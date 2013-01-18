@@ -59,7 +59,6 @@ static JavaMethod steram_info_set_metadata = {"setMetadata", "(Ljava/util/Map;)V
 static JavaMethod steram_info_set_media_type_internal = {"setMediaTypeInternal", "(I)V"};
 static JavaMethod stream_info_set_stream_number = {"setStreamNumber", "(I)V"};
 
-
 // Set
 static char *set_class_path_name = "java/util/Set";
 static JavaMethod set_iterator = {"iterator", "()Ljava/util/Iterator;"};
@@ -85,7 +84,6 @@ static const struct {
     { "7.1",         8,  AV_CH_LAYOUT_7POINT1 },
 };
 
-
 // FFmpegPlayer
 static char *player_class_path_name = "com/appunite/ffmpeg/FFmpegPlayer";
 static JavaField player_m_native_player = {"mNativePlayer", "I"};
@@ -104,47 +102,34 @@ static JavaMethod audio_track_stop = {"stop", "()V"};
 static JavaMethod audio_track_get_channel_count = {"getChannelCount", "()I"};
 static JavaMethod audio_track_get_sample_rate = {"getSampleRate", "()I"};
 
-
 // Player
-
 int jni_player_init(JNIEnv *env, jobject thiz);
 void jni_player_dealloc(JNIEnv *env, jobject thiz);
-
 void jni_player_seek(JNIEnv *env, jobject thiz, jint position);
-
 void jni_player_pause(JNIEnv *env, jobject thiz);
 void jni_player_resume(JNIEnv *env, jobject thiz);
-
 int jni_player_set_data_source(JNIEnv *env, jobject thiz, jstring string,
 		jobject dictionary, int video_stream_no, int audio_stream_no,
 		int subtitle_stream_no);
 void jni_player_stop(JNIEnv *env, jobject thiz);
-
 void jni_player_render_frame_start(JNIEnv *env, jobject thiz);
 void jni_player_render_frame_stop(JNIEnv *env, jobject thiz);
 jobject jni_player_render_frame(JNIEnv *env, jobject thiz);
 void jni_player_release_frame (JNIEnv *env, jobject thiz);
-
 int jni_player_get_video_duration(JNIEnv *env, jobject thiz);
 
 static JNINativeMethod player_methods[] = {
-
 	{"initNative", "()I", (void*) jni_player_init},
 	{"deallocNative", "()V", (void*) jni_player_dealloc},
-
 	{"seekNative", "(I)V", (void*) jni_player_seek},
-
 	{"pauseNative", "()V", (void*) jni_player_pause},
 	{"resumeNative", "()V", (void*) jni_player_resume},
-
 	{"setDataSourceNative", "(Ljava/lang/String;Ljava/util/Map;III)I", (void*) jni_player_set_data_source},
 	{"stopNative", "()V", (void*) jni_player_stop},
-
 	{"renderFrameStart", "()V", (void*) jni_player_render_frame_start},
 	{"renderFrameStop", "()V", (void*) jni_player_render_frame_stop},
 	{"renderFrameNative", "()Landroid/graphics/Bitmap;", (void*) jni_player_render_frame},
 	{"releaseFrame", "()V", (void*) jni_player_release_frame},
-
 	{"getVideoDurationNative", "()I", (void*) jni_player_get_video_duration},
 };
 

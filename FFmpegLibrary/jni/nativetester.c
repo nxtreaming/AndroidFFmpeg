@@ -16,7 +16,6 @@
  *
  */
 
-/*android specific headers*/
 #include <jni.h>
 #include <android/log.h>
 #include <cpu-features.h>
@@ -25,16 +24,14 @@
 
 #include "nativetester.h"
 
-
 #define LOG_TAG "NativeTester"
 #define LOG_LEVEL 10
 #define LOGI(level, ...) if (level <= LOG_LEVEL) {__android_log_print(ANDROID_LOG_INFO, LOG_TAG, __VA_ARGS__);}
 #define LOGE(level, ...) if (level <= LOG_LEVEL) {__android_log_print(ANDROID_LOG_ERROR, LOG_TAG, __VA_ARGS__);}
 
 jboolean jni_nativetester_is_neon(JNIEnv *env, jobject thiz) {
-	uint64_t features;
 #ifdef FEATURE_NEON
-
+	uint64_t features;
 	if (android_getCpuFamily() != ANDROID_CPU_FAMILY_ARM) {
 		LOGI(5, "Not an ARM CPU\n");
 		return JNI_FALSE;
@@ -57,4 +54,3 @@ jboolean jni_nativetester_is_neon(JNIEnv *env, jobject thiz) {
 	return JNI_FALSE;
 #endif
 }
-
