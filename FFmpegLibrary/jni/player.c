@@ -35,7 +35,7 @@
 
 #include <android/bitmap.h>
 #include <android/log.h>
-#include <machine/cpu-features.h>
+#include <cpu-features.h>
 
 #include <jni.h>
 #include <pthread.h>
