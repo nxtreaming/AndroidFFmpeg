@@ -258,35 +258,30 @@ EOF
 	    --extra-ldflags="-Wl,-rpath-link=$PLATFORM/usr/lib -L$PLATFORM/usr/lib  -nostdlib -lc -lm -ldl -llog -L$PREFIX/lib" \
 	    --extra-cflags="-I$PREFIX/include" \
 	    --disable-everything \
+	    --disable-encoders \
+	    --disable-decoders \
+	    --disable-muxers \
+	    --disable-demuxers \
+	    --disable-avdevice \
+	    --disable-avfilter \
+	    --enable-avresample \
+	    --disable-parsers \
+	    --disable-protocols \
 	    --enable-libass \
-	    --enable-libvo-aacenc \
-	    --enable-libvo-amrwbenc \
 	    --enable-hwaccel=h264_vaapi \
 	    --enable-hwaccel=h264_vaapi \
 	    --enable-hwaccel=h264_dxva2 \
 	    --enable-hwaccel=mpeg4_vaapi \
 	    --enable-demuxer=mov \
-	    --enable-demuxer=h264 \
-	    --enable-demuxer=mpegvideo \
-	    --enable-demuxer=h263 \
-	    --enable-demuxer=mpegps \
-	    --enable-demuxer=mjpeg \
 	    --enable-demuxer=rtsp \
 	    --enable-demuxer=rtp \
 	    --enable-demuxer=hls \
-	    --enable-demuxer=matroska \
-	    --enable-muxer=rtsp \
-	    --enable-muxer=mp4 \
-	    --enable-muxer=mov \
-	    --enable-muxer=mjpeg \
-	    --enable-muxer=matroska \
 	    --enable-protocol=crypto \
 	    --enable-protocol=jni \
 	    --enable-protocol=file \
 	    --enable-protocol=rtp \
 	    --enable-protocol=tcp \
 	    --enable-protocol=udp \
-	    --enable-protocol=applehttp \
 	    --enable-protocol=hls \
 	    --enable-protocol=http \
 	    --enable-decoder=xsub \
@@ -294,31 +289,11 @@ EOF
 	    --enable-decoder=dvdsub \
 	    --enable-decoder=dvbsub \
 	    --enable-decoder=subviewer \
-	    --enable-decoder=rawvideo \
-	    --enable-encoder=rawvideo \
-	    --enable-decoder=mjpeg \
-	    --enable-encoder=mjpeg \
-	    --enable-decoder=h263 \
-	    --enable-decoder=mpeg4 \
-	    --enable-encoder=mpeg4 \
 	    --enable-decoder=h264 \
-	    --enable-encoder=h264 \
 	    --enable-decoder=aac \
-	    --enable-encoder=aac \
 	    --enable-parser=h264 \
-	    --enable-encoder=mp2 \
-	    --enable-decoder=mp2 \
-	    --enable-encoder=libvo_amrwbenc \
-	    --enable-decoder=amrwb \
-	    --enable-muxer=mp2 \
-	    --enable-decoders \
-	    --enable-encoders \
-	    --enable-parsers \
+	    --enable-parser=aac \
 	    --enable-hwaccels \
-	    --enable-muxers \
-	    --enable-avformat \
-	    --enable-avcodec \
-	    --enable-avresample \
 	    --enable-zlib \
 	    --disable-doc \
 	    --disable-ffplay \
@@ -326,8 +301,6 @@ EOF
 	    --disable-ffplay \
 	    --disable-ffprobe \
 	    --disable-ffserver \
-	    --disable-avfilter \
-	    --disable-avdevice \
 	    --enable-nonfree \
 	    --enable-version3 \
 	    --enable-memalign-hack \
@@ -343,7 +316,7 @@ EOF
 function build_one {
 	cd ffmpeg
 	PLATFORM=$NDK/platforms/$PLATFORM_VERSION/arch-$ARCH
-	$PREBUILT/bin/$EABIARCH-ld -rpath-link=$PLATFORM/usr/lib -L$PLATFORM/usr/lib -L$PREFIX/lib  -soname $SONAME -shared -nostdlib  -z noexecstack -Bsymbolic --whole-archive --no-undefined -o $OUT_LIBRARY -lavcodec -lavformat -lavresample -lavutil -lswresample -lass -lfreetype -lfribidi -lswscale -lvo-aacenc -lvo-amrwbenc -lc -lm -lz -ldl -llog --dynamic-linker=/system/bin/linker -zmuldefs $PREBUILT/lib/gcc/$EABIARCH/4.6/libgcc.a || exit 1
+	$PREBUILT/bin/$EABIARCH-ld -rpath-link=$PLATFORM/usr/lib -L$PLATFORM/usr/lib -L$PREFIX/lib  -soname $SONAME -shared -nostdlib  -z noexecstack -Bsymbolic --whole-archive --no-undefined -o $OUT_LIBRARY -lavcodec -lavformat -lavresample -lavutil -lswresample -lass -lfreetype -lfribidi -lswscale -lc -lm -lz -ldl -llog --dynamic-linker=/system/bin/linker -zmuldefs $PREBUILT/lib/gcc/$EABIARCH/4.6/libgcc.a || exit 1
 	cd ..
 }
 
@@ -358,8 +331,8 @@ ADDITIONAL_CONFIGURE_FLAG=
 SONAME=libffmpeg.so
 PREBUILT=$NDK/toolchains/arm-linux-androideabi-4.6/prebuilt/$OS-x86
 PLATFORM_VERSION=android-5
-build_amr
-build_aac
+#build_amr
+#build_aac
 build_fribidi
 build_freetype2
 build_ass
@@ -413,8 +386,8 @@ ADDITIONAL_CONFIGURE_FLAG=
 SONAME=libffmpeg.so
 PREBUILT=$NDK/toolchains/arm-linux-androideabi-4.6/prebuilt/$OS-x86
 PLATFORM_VERSION=android-5
-build_amr
-build_aac
+#build_amr
+#build_aac
 build_fribidi
 build_freetype2
 build_ass
@@ -432,8 +405,8 @@ ADDITIONAL_CONFIGURE_FLAG=--enable-neon
 SONAME=libffmpeg-neon.so
 PREBUILT=$NDK/toolchains/arm-linux-androideabi-4.6/prebuilt/$OS-x86
 PLATFORM_VERSION=android-9
-build_amr
-build_aac
+#build_amr
+#build_aac
 build_fribidi
 build_freetype2
 build_ass
