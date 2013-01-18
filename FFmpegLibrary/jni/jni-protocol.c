@@ -18,7 +18,6 @@
 
 #include <libavutil/avstring.h>
 #include <libavformat/avformat.h>
-#include <jni.h>
 
 #include "ffmpeg/libavformat/url.h"
 
@@ -69,7 +68,8 @@ static int jni_read(URLContext *h, unsigned char *buf, int size) {
 
 	(*env)->DeleteLocalRef(env, byte_array);
 
-	end: return err >= 0 ? err : AVERROR(err);
+end:
+	return err >= 0 ? err : AVERROR(err);
 }
 
 static int jni_write(URLContext *h, const unsigned char *buf, int size) {
@@ -114,7 +114,8 @@ static int jni_write(URLContext *h, const unsigned char *buf, int size) {
 
 	(*env)->DeleteLocalRef(env, byte_array);
 
-	end: return err >= 0 ? err : AVERROR(err);
+end:
+	return err >= 0 ? err : AVERROR(err);
 }
 
 static int jni_get_handle(URLContext *h) {
@@ -154,7 +155,8 @@ static int jni_check(URLContext *h, int mask) {
 
 	err = (*env)->CallIntMethod(env, jni_reader, jni_reader_check, mask);
 
-	end: return err >= 0 ? err : AVERROR(err);
+end:
+	return err >= 0 ? err : AVERROR(err);
 }
 
 static int jni_open2(URLContext *h, const char *url, int flags,
@@ -208,15 +210,14 @@ static int jni_open2(URLContext *h, const char *url, int flags,
 		goto free_jni_reader;
 	}
 
-	free_jni_reader:
-
+free_jni_reader:
 	(*env)->DeleteLocalRef(env, jni_reader);
 
-	free_url_java_string:
-
+free_url_java_string:
 	(*env)->DeleteLocalRef(env, url_java_string);
 
-	end: return err >= 0 ? err : AVERROR(err);
+end:
+	return err >= 0 ? err : AVERROR(err);
 }
 
 static int jni_open(URLContext *h, const char *filename, int flags) {
@@ -256,7 +257,8 @@ static int64_t jni_seek(URLContext *h, int64_t pos, int whence) {
 
 	err = (*env)->CallIntMethod(env, jni_reader, jni_reader_seek, pos, whence);
 
-	end: return err >= 0 ? err : AVERROR(err);
+end:
+	return err >= 0 ? err : AVERROR(err);
 }
 
 static int jni_close(URLContext *h) {
@@ -277,13 +279,21 @@ static int jni_close(URLContext *h) {
 
 	(*env)->DeleteGlobalRef(env, jni_reader);
 
-	end: return err >= 0 ? err : AVERROR(err);
+end:
+	return err >= 0 ? err : AVERROR(err);
 }
 
-URLProtocol jni_protocol = { .name = "jni", .url_open2 = jni_open2,
-		.url_open = jni_open, .url_read = jni_read, .url_write = jni_write,
-		.url_seek = jni_seek, .url_close = jni_close, .url_get_file_handle =
-				jni_get_handle, .url_check = jni_check, };
+URLProtocol jni_protocol = {
+	.name = "jni",
+	.url_open2 = jni_open2,
+	.url_open = jni_open,
+	.url_read = jni_read,
+	.url_write = jni_write,
+	.url_seek = jni_seek,
+	.url_close = jni_close,
+	.url_get_file_handle = jni_get_handle,
+	.url_check = jni_check,
+};
 
 void register_jni_protocol(JavaVM *jvm) {
 	global_jvm = jvm;

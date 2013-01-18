@@ -18,6 +18,7 @@
 
 #ifndef JNI_PROTOCOL_H
 #define JNI_PROTOCOL_H
+#include <jni.h>
 
 void register_jni_protocol(JavaVM *jvm);
 
