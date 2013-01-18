@@ -68,6 +68,7 @@ include $(PREBUILT_SHARED_LIBRARY)
 
 ifdef FEATURE_NEON
 	include $(CLEAR_VARS)
+	LOCAL_CFLAGS += -DFEATURE_NEON
 	LOCAL_MODULE := ffmpeg-prebuilt-neon
 	LOCAL_SRC_FILES := ffmpeg-build/$(TARGET_ARCH_ABI)/libffmpeg-neon.so
 	LOCAL_EXPORT_C_INCLUDES := ffmpeg-build/$(TARGET_ARCH_ABI)-neon/include
