@@ -113,9 +113,6 @@ void player_print_codec_description(AVCodec *codec) {
 	case AVMEDIA_TYPE_DATA:
 		type = "data";
 		break;
-	case AVMEDIA_TYPE_NB:
-		type = "nb";
-		break;
 	case AVMEDIA_TYPE_SUBTITLE:
 		type = "subtitle";
 		break;
@@ -1696,8 +1693,6 @@ int player_print_report_video_streams(JNIEnv* env, jobject thiz,
 			codec_type = CODEC_TYPE_SUBTITLE;
 		} else if (codec->codec_type == AVMEDIA_TYPE_ATTACHMENT) {
 			codec_type = CODEC_TYPE_ATTACHMENT;
-		} else if (codec->codec_type == AVMEDIA_TYPE_NB) {
-			codec_type = CODEC_TYPE_NB;
 		} else if (codec->codec_type == AVMEDIA_TYPE_DATA) {
 			codec_type = CODEC_TYPE_DATA;
 		}
@@ -1778,8 +1773,6 @@ void player_print_video_informations(struct Player *player,
 				codec_type = "subtitle";
 			} else if (codec->codec_type == AVMEDIA_TYPE_ATTACHMENT) {
 				codec_type = "attachment";
-			} else if (codec->codec_type == AVMEDIA_TYPE_NB) {
-				codec_type = "nb";
 			} else if (codec->codec_type == AVMEDIA_TYPE_DATA) {
 				codec_type = "data";
 			}
