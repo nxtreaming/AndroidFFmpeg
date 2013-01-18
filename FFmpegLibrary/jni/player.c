@@ -531,7 +531,7 @@ static void player_print_subtitle(AVSubtitle *sub, double pts) {
 		LOGI(3, "player_decode_subtitles --rect->text = %s", rect->text);
 		LOGI(3, "player_decode_subtitles --rect->ass = %s", rect->ass);
 		LOGI(3,
-				"player_decode_subtitles --rect->forced = %s", rect->forced ? "true" : "false");
+				"player_decode_subtitles --rect->flags(forced) = %s", (rect->flags & AV_SUBTITLE_FLAG_FORCED) ? "true" : "false");
 		char *type = "undefined";
 		if (rect->type == SUBTITLE_NONE) {
 			type = "none";
@@ -2845,7 +2845,7 @@ jobject jni_player_render_frame(JNIEnv *env, jobject thiz) {
 	clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &time_start);
 #endif // MEASURE_TIME
 
-	pop:
+pop:
 	LOGI(4, "jni_player_render_frame reading from queue");
 	elem = queue_pop_start_already_locked(&player->rgb_video_frames,
 			&player->mutex_queue, &player->cond_queue,
