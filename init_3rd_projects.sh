@@ -32,7 +32,7 @@ autoreconf
 cd ..
 
 echo "try to generate vo-amrwbenc configure"
-cd vo-amrwebenc
+cd vo-amrwbenc
 autoreconf
 cd ..
 
