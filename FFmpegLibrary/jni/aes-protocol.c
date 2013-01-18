@@ -60,13 +60,19 @@ typedef struct {
 
 #define OFFSET(x) offsetof(AesContext, x)
 
-static const AVOption options[] = { { "aeskey", "AES decryption key",
-		OFFSET(key), AV_OPT_TYPE_STRING, .flags = AV_OPT_FLAG_DECODING_PARAM },
-		{ NULL } };
+static const AVOption options[] =
+{
+	{ "aeskey", "AES decryption key", OFFSET(key), AV_OPT_TYPE_STRING, .flags = AV_OPT_FLAG_DECODING_PARAM },
+	{ NULL }
+};
 
-static const AVClass aes_class = { .class_name = "aes", .item_name =
-		av_default_item_name, .option = options, .version =
-		LIBAVUTIL_VERSION_INT, };
+static const AVClass aes_class =
+{
+	.class_name = "aes",
+	.item_name = av_default_item_name,
+	.option = options,
+	.version	 = LIBAVUTIL_VERSION_INT,
+};
 
 #define MAX_PRINT_LEN 2048
 
@@ -297,10 +303,16 @@ static int aes_close(URLContext *h) {
 	return 0;
 }
 
-URLProtocol aes_protocol = { .name = "aes", .url_open = aes_open, .url_read =
-		aes_read, .url_close = aes_close, .url_seek = aes_seek,
-		.priv_data_size = sizeof(AesContext), .priv_data_class = &aes_class,
-		.flags = URL_PROTOCOL_FLAG_NESTED_SCHEME, };
+URLProtocol aes_protocol = {
+	.name = "aes",
+	.url_open = aes_open,
+	.url_read = aes_read,
+	.url_close = aes_close,
+	.url_seek = aes_seek,
+	.priv_data_size = sizeof(AesContext),
+	.priv_data_class = &aes_class,
+	.flags = URL_PROTOCOL_FLAG_NESTED_SCHEME,
+};
 
 void register_aes_protocol() {
 	ffurl_register_protocol(&aes_protocol, sizeof(aes_protocol));
