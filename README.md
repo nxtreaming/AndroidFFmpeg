@@ -16,7 +16,7 @@ commits.
 	
 or
 
-	git clone https://github.com/appunite/AndroidFFmpeg.git
+	git clone https://github.com/nxtreaming/AndroidFFmpeg.git
 
 ## License
 Copyright (C) 2012 Appunite.com
