@@ -234,7 +234,6 @@ public class FFmpegPlayer {
 		super.finalize();
 	}
 
-	private native boolean isNeon();
 	private native int initNative();
 
 	private native void deallocNative();
