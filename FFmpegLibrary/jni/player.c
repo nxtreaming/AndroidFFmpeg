@@ -530,8 +530,13 @@ static void player_print_subtitle(AVSubtitle *sub, double pts) {
 				"player_decode_subtitles --rect->nb_colors = %d", rect->nb_colors);
 		LOGI(3, "player_decode_subtitles --rect->text = %s", rect->text);
 		LOGI(3, "player_decode_subtitles --rect->ass = %s", rect->ass);
+#if LIBAVCODEC_VERSION_INT > AV_VERSION_INT(54,70,100)
 		LOGI(3,
 				"player_decode_subtitles --rect->flags(forced) = %s", (rect->flags & AV_SUBTITLE_FLAG_FORCED) ? "true" : "false");
+#else
+		LOGI(3,
+				"player_decode_subtitles --rect->forced = %s", rect->forced ? "true" : "false");
+#endif
 		char *type = "undefined";
 		if (rect->type == SUBTITLE_NONE) {
 			type = "none";
